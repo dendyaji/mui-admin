@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.shortcuts import render
-
+from django.urls import path, include
 
 def index(request) :
     title = "Dashboard"
@@ -34,6 +34,9 @@ def sejarah(request) :
     return render(request, 'sejarah.html', konteks)
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('dashboard/', index),
+    path('api/', include('tentang.urls')),
     path('sejarah/', sejarah),
+    path('tentang/', include('tentang.urls')),
 ]
